@@ -1,32 +1,30 @@
-# Python代码仓库模板
+# 标题：飞桨常规赛：中文场景文字识别 - 12月第3名方案
 
 ![GitHub forks](https://img.shields.io/github/forks/GT-ZhangAcer/PythonRepository-Template?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/GT-ZhangAcer/PythonRepository-Template?style=for-the-badge) 
 
-这是一个简单的迁移模板，使用者只需在[模板仓库](https://github.com/GT-ZhangAcer/PythonRepository-Template)中点击[use this template](https://github.com/GT-ZhangAcer/PythonRepository-Template/generate)即可创建属于自己的具备前端页面空白Paddle项目。
+本项目为常规赛：中文场景文字识别 2021年12月份第3名的技术方案分享项目。最终得分为84.22158。
 
+本项目使用PaddleOCR-develop(静态图版本)，PaddleOCR主要由DB文本检测、检测框矫正和CRNN文本识别三部分组成，本次中文场景文本识别只需要使用第三阶段的文本识别器即可。采用CRNN文本识别模型作为baseline
+![image](https://user-images.githubusercontent.com/95835850/150290636-172d246a-8dc2-4764-bc54-6f506ef6739d.png)
+本项目AI Studio地址：https://aistudio.baidu.com/aistudio/projectdetail/3290922?contributionType=1
+从中可以获得更加详细的介绍
 
-## 项目结构
+## 提交时所使用的checkpoint
+最终比赛提交的结果，checkpoints使用的是/home/aistudio/work/PaddleOCR/output/my_rec_ch/路径下的best_accuracy
 
-### Main分支（Default）
-该分支为主要的开发分支，与项目有关的说明和代码文件可放置于此，在仓库被访问时默认展示该分支。
-```
--|
---LICENSE   开源协议文件，默认为MIT开源协议。
---README.md 项目说明文件，可使用Markdowm编辑器进行编辑。
---requirements.txt Python项目依赖列表
-```  
-### gh-pages分支
-该分支下默认会给出静态页面文件，在使用该模板后将自动生成一个项目介绍网页`https://GitHub昵称.github.io/项目名`，我们只需对该分支下的`index.md`文件进行修改即可操控这个页面。
+## tip1：合理的数据增强有助于提升比赛分数
 
-## 使用方法
+本次比赛中，使用数据增强的目的是用来防止过拟合，并且数据增强适用于dataset较小的时候。
 
-### Step1 使用模板仓库创建一个新的个人仓库
-进入[模板仓库]()主页，获取最新模板或点击[此处](https://github.com/GT-ZhangAcer/PythonRepository-Template/generate)立即创建一个这样的特殊仓库。
-<img src="https://ai-studio-static-online.cdn.bcebos.com/77a8ffd9cd9b4953a39f609bb2b0a4903bc046f354944d5d9ee776676f580095" width="800px">  
-简单填写仓库信息  
-<img src="https://ai-studio-static-online.cdn.bcebos.com/e42d4a7b3a064e788b0761570b19b27e18f19a9eeba44c21abf22d7270e38fda" width="800px">
+我选择使用text_render进行数据增强。使用的操作主要包括明暗变换，文本边界调整，添加噪声，颜色调整，文本字体特效变换等等。
 
-### Step2 上传项目文件至个人仓库
-<img src="https://ai-studio-static-online.cdn.bcebos.com/81ed71bc5ab74d01ab3ed244b987a08b7f3664baecf4475f8c337a2cbfcb04e5" width="800px">  
-<img src="https://ai-studio-static-online.cdn.bcebos.com/069da53af0ca4cbe8f2de962d2cd3e2d6dbbba9e44d9411bb0bd8dda8a7c1b52" width="800px"> 
+## tip2：参数调优
 
+本次比赛结果的调优过程：设定了161轮迭代（从epoch0到epoch160），初始学习率为0.0001，fc_decay为0.00001，l2学习率衰减为0.00001
+
+为了适当提升学习速度，使用了cosine_decay和warmup。其中step_each_epoch为1000，warmup_minibatch为2000，衰减总轮数为161
+
+经测试以上参数设定可以达到较好的结果
+
+## 总结
+每一种模型的能力是有限度的，从参数调优、数据增强等角度去改善也是有一定限度的。想要推陈出新，更显著地提升分数，小伙伴们可以去尝试使用新的网络，并对网络模型做出进一步调整。
