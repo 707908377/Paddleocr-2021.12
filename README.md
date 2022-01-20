@@ -7,7 +7,7 @@
 本项目使用PaddleOCR-develop(静态图版本)，PaddleOCR主要由DB文本检测、检测框矫正和CRNN文本识别三部分组成，本次中文场景文本识别只需要使用第三阶段的文本识别器即可。采用CRNN文本识别模型作为baseline
 ![image](https://user-images.githubusercontent.com/95835850/150290636-172d246a-8dc2-4764-bc54-6f506ef6739d.png)
 本项目AI Studio地址：https://aistudio.baidu.com/aistudio/projectdetail/3290922?contributionType=1
-从中可以获得更加详细的介绍
+从中可以获得更加详细的介绍和可一键复现的飞桨算法代码
 
 ## 提交时所使用的checkpoint
 最终比赛提交的结果，checkpoints使用的是/home/aistudio/work/PaddleOCR/output/my_rec_ch/路径下的best_accuracy
