@@ -1,6 +1,6 @@
 # 标题：飞桨常规赛：中文场景文字识别 - 12月第3名方案
 
-![GitHub forks](https://img.shields.io/github/forks/GT-ZhangAcer/PythonRepository-Template?style=for-the-badge) ![GitHub Repo stars](https://img.shields.io/github/stars/GT-ZhangAcer/PythonRepository-Template?style=for-the-badge) 
+
 
 本项目为常规赛：中文场景文字识别 2021年12月份第3名的技术方案分享项目。最终得分为84.22158。
 
